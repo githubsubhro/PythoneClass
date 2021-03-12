@@ -8,5 +8,5 @@ class Person:
 
 #Use the Person class to create an object, and then execute the printname method:
 
-x = Person("John", "Doe")
+x = Person("Subhro", "Doe")
 x.printname() 
