@@ -18,6 +18,7 @@ class CNN(nn.Module):
 
 
 if __name__ == "__main__":
-    image = torch.rand(1, 1, 1500, 1500).cuda()
+    image = torch.rand(1, 1, 500, 500).cuda()
     model = CNN().cuda()
+    print(image.shape)
     model(image)
