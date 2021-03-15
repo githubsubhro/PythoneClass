@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import matplotlib.image as pimg
+import numpy as np
 
 
 def doubleconv(in_channel, out_channel):
@@ -86,7 +87,8 @@ if __name__ == "__main__":
     y = images.shape[2]
     output = images.reshape(y, y, 3)
     output = output.cpu()
-    plt.imshow(output)
+    output = output.detach().numpy()
+    print(output.dtype)
+
     plt.show()
-    print(output.device)
-    print(output.shape)
+
