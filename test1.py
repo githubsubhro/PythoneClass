@@ -29,7 +29,7 @@ class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
         # Encoder section
-        self.dconv1 = doubleconv(3, 64)
+        self.dconv1 = doubleconv(1, 64)
         self.dconv2 = doubleconv(64, 128)
         self.dconv3 = doubleconv(128, 256)
         self.dconv4 = doubleconv(256, 512)
@@ -40,7 +40,7 @@ class CNN(nn.Module):
         self.dconv8 = doubleconv(256, 128)
         self.dconv9 = doubleconv(128, 64)
         # Output section
-        self.dconvf = nn.Conv2d(64, 3, 1)
+        self.dconvf = nn.Conv2d(64, 1, 1)
         # Maxpool
         self.maxpool = nn.MaxPool2d(2, stride=2)
         # Up convolution
@@ -76,19 +76,19 @@ class CNN(nn.Module):
         return out
 
 if __name__ == "__main__":
-    image1 = pimg.imread("/home/subhro/Pictures/ADW_1268.png")
+    image1 = pimg.imread("/home/subhro/Pictures/index1.jpeg")
     img = torch.cuda.FloatTensor(image1)
     x = img.shape[0]
-    img = img.reshape(1, 3, x, x)
+    img = img.reshape(1, 1, x, x)
     print(img.device)
-    #image = torch.rand(1, 3, 572, 572).cuda()
     model = CNN().cuda()
     images = model(img)
     y = images.shape[2]
-    output = images.reshape(y, y, 3)
+    output = images.reshape(y, y, 1)
     output = output.cpu()
     output = output.detach().numpy()
-    print(output.dtype)
-
+    plt.imshow(output)
     plt.show()
+
+
 
