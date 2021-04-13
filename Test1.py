@@ -42,7 +42,7 @@ def uconv(inc, outc):
     return uconvt
 
 
-# class definition
+# class definition ofnn
 class SCNN(nn.Module):
     def __init__(self):
         super(SCNN, self).__init__()
